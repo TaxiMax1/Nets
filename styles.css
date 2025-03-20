@@ -3,9 +3,10 @@
   --text-color: #fff;
   
   --nav-bg: #1a2c38;
+  --aside-bg: #0f212e;
 
   --button-bg: #1475e1;
-  --button-hover: #1267ca;
+  --button-hover: #1160ba;
 }
 
 body {
@@ -18,31 +19,63 @@ body {
 
 .header-container {
   display: flex;
-  text-align: center;
   justify-content: center;
+  align-items: center;
   position: relative;
-  top: 0%;
-  left: 0%;
+  top: 0;
+  left: 0;
   height: 60px;
   background-color: var(--nav-bg);
   box-shadow: #0003 0 4px 6px -1px, #0000001f 0 2px 4px -1px;
 }
 
+.nav-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 20px;
+  justify-content: space-between;
+}
+
+.svg-icon {
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+  color: #b1bad3;
+  flex-shrink: 0;
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin-left: -98px;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+
+.svg-icon:hover {
+  color: white;
+}
+
+.netslogo {
+  width: 65px;
+  cursor: pointer;
+  position: relative;
+  left: -450px;
+  user-select: none;
+}
+
+
 .sign-buttons {
   display: flex;
   gap: 15px;
-  margin-left: 1100px;
-}  
+}
 
 .sign-buttons button {
   color: white;
   border: none;
   font-size: .825rem;
   font-weight: 600;
-  border: none;
   cursor: pointer;
-  position: relative;
-  top: -47px;
   transition: 0.2s ease-in-out;
 }
 
@@ -62,9 +95,14 @@ body {
 }
 
 
-.netslogo {
-  width: 65px;
-  margin-top: 7px;
-  margin-right: 1100px;
-  cursor: pointer;
+.aside-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 55px;
+  height: 720px;
+  background-color: var(--aside-bg);
 }
