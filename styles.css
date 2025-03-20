@@ -1,0 +1,70 @@
+:root {
+  --bg-color: #0f212e;
+  --text-color: #fff;
+  
+  --nav-bg: #1a2c38;
+
+  --button-bg: #1475e1;
+  --button-hover: #1267ca;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: 'proxima-nova', sans-serif;
+}
+
+.header-container {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  position: relative;
+  top: 0%;
+  left: 0%;
+  height: 60px;
+  background-color: var(--nav-bg);
+  box-shadow: #0003 0 4px 6px -1px, #0000001f 0 2px 4px -1px;
+}
+
+.sign-buttons {
+  display: flex;
+  gap: 15px;
+  margin-left: 1100px;
+}  
+
+.sign-buttons button {
+  color: white;
+  border: none;
+  font-size: .825rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  top: -47px;
+  transition: 0.2s ease-in-out;
+}
+
+.login-button {
+  background-color: transparent;
+}
+
+.register-button {
+  background-color: var(--button-bg);
+  height: 45px;
+  width: 92px;
+  border-radius: 5px;
+}
+
+.register-button:hover {
+  background-color: var(--button-hover);
+}
+
+
+.netslogo {
+  width: 65px;
+  margin-top: 7px;
+  margin-right: 1100px;
+  cursor: pointer;
+}
