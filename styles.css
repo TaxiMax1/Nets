@@ -1,16 +1,12 @@
 :root {
   --bg-color: #0f212e;
   --text-color: #fff;
-  
   --nav-bg: #1a2c38;
   --aside-bg: #0b1b26;
   --main-section-bg: #1f3341;
-
   --button-bg: #1475e1;
   --button-hover: #1160ba;
-
-
-  --sports-bg: #233b4b;
+  --sports-bg: #2f4553;
 }
 
 body {
@@ -19,6 +15,7 @@ body {
   background-color: var(--bg-color);
   color: var(--text-color);
   font-family: 'proxima-nova', sans-serif;
+  overflow-x: hidden;
 }
 
 .header-container {
@@ -54,12 +51,10 @@ body {
   margin-left: -98px;
   cursor: pointer;
   transition: 0.2s ease-in-out;
+  z-index: 2;
 }
 
-.svg-icon:hover {
-  color: white;
-}
-
+.svg-icon:hover,
 .svg-icon.active {
   color: white;
 }
@@ -73,7 +68,6 @@ body {
   user-select: none;
 }
 
-
 .sign-buttons {
   display: flex;
   gap: 15px;
@@ -82,7 +76,7 @@ body {
 .sign-buttons button {
   color: white;
   border: none;
-  font-size: .825rem;
+  font-size: 0.825rem;
   font-weight: 600;
   cursor: pointer;
   transition: 0.2s ease-in-out;
@@ -105,16 +99,15 @@ body {
   background-color: var(--button-hover);
 }
 
-
 .aside-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
+  position: fixed;
   top: 0;
   left: 0;
   width: 60px;
-  height: 720px;
+  height: 100vh;
   background-color: var(--aside-bg);
   transition: 0.2s ease-in-out;
 }
@@ -124,23 +117,25 @@ body {
 }
 
 .asidenav-container {
-  /* margin-top: -630px; */
   position: relative;
-  top: -295px;
+  top: -262px;
   display: flex;
   flex-direction: column;
   gap: 10px;
   padding: 10px;
 }
 
-
 .sportsgamble-container {
   background-color: var(--sports-bg);
   border-radius: 5px;
 }
 
+.sportsgamble-container a {
+  text-decoration: none;
+}
 
-#casinohome {
+#casinohome,
+#basketball {
   background-color: var(--sports-bg);
   width: 45px;
   height: 45px;
@@ -162,11 +157,25 @@ body {
   pointer-events: none;
 }
 
-#casinohome:hover::after, #basketball:hover::after {
+#basketball::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 119, 0, 0.645);
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+  pointer-events: none;
+}
+
+#casinohome:hover::after,
+#basketball:hover::after {
   opacity: 1;
 }
 
-#casinohome.expanded {
+#casinohome.expanded,
+#basketball.expanded {
   width: 80px;
   height: 40px;
   position: relative;
@@ -174,10 +183,9 @@ body {
   top: -95px;
 }
 
-
 .label {
   color: white;
-  font-size: .82rem;
+  font-size: 0.82rem;
   font-weight: 600;
   display: flex;
   text-align: center;
@@ -194,62 +202,39 @@ body {
   transform: translateX(0);
 }
 
-
-
-
-#basketball {
-  background-color: var(--sports-bg);
-  width: 45px;
-  height: 45px;
-  border-radius: 5px;
-  position: relative;
-  overflow: hidden;
-  cursor: pointer;
-}
-
-#basketball::after {
-  content: "";
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(255, 119, 0, 0.645);
-  opacity: 0;
-  transition: opacity 0.2s ease-in-out;
-  pointer-events: none;
-}
-
-#basketball.expanded {
-  width: 80px;
-  height: 40px;
-  position: relative;
-  left: 25px;
-  top: -95px;
-}
-
-
-
 .main-page-container {
   display: flex;
-  text-align: center;
-  justify-content: center;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background-color: var(--main-section-bg);
-  width: 1380px;
-  height: 720px;
+  width: calc(100% - 60px);
+  height: 100vh;
+  padding: 80px;
   margin-left: 60px;
-  margin-top: -720px;
+  box-sizing: border-box;
 }
 
+.introduction {
+  margin-left: -830px;
+  margin-top: -430px;
+  transition: 0.2s ease-in-out;
+}
+
+.introduction.shifted {
+  margin-left: -580px; 
+}
+
+
 .main-header {
+  display: flex;
   text-align: left;
-  font-family: 'proxima-nova', sans-serif;;
-  font-size: 1.9rem;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+  font-size: 2rem;
   font-weight: 700;
-  width: 500px;
-  position: relative;
-  left: 80px;
-  bottom: 230px;
+  max-width: 600px;
 }
 
 .main-register-button {
@@ -259,35 +244,28 @@ body {
   width: 92px;
   border-radius: 3px;
   border: none;
-  font-size: .825rem;
+  font-size: 0.825rem;
   font-weight: 600;
   cursor: pointer;
   transition: 0.2s ease-in-out;
-  position: relative;
-  left: 80px;
-  bottom: 210px;
+  margin-bottom: 15px;
 }
+
 .main-register-button:hover {
   background-color: var(--button-hover);
 }
 
 .other-signup {
   color: #b1bad3;
-  position: relative;
-  right: 568px;
-  bottom: 180px;
-  font-size: .7rem;
+  font-size: 0.75rem;
   font-weight: 600;
+  margin-bottom: 10px;
 }
 
 .sign-up-methods {
   display: flex;
-  gap: 10px; 
-  position: relative;
-  left: 80px;
-  bottom: 165px;
-  width: auto;
-  height: auto;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 .signup-method {
@@ -304,4 +282,76 @@ body {
 
 .signup-method:hover {
   background-color: #557086;
+}
+
+
+.box-label {
+  position: relative;
+  left: 70px;
+  top: -18px;
+}
+
+.box-label svg {
+  position: relative;
+  left: -130px;
+  top: 30px;
+}
+
+
+.other-sites {
+  margin-left: 500px;
+  margin-top: -240px;
+}
+
+.other-sites-boxes {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.other-sites-box {
+  background-color: #2f4553;
+  width: 350px;
+  height: 250px;
+  border-radius: 6px;
+  transition: 0.2s ease-in-out;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  transition: transform 0.3s ease-in-out;
+}
+
+.other-sites-box:hover {
+  transform: translateY(-10px);
+}
+
+
+.casinopic {
+  width: 100%;
+  height: 210px;
+  border-radius: 6px;
+  margin-top: 0px;
+}
+
+.othersites-header {
+  margin-top: 12px;
+  margin-left: -200px;
+  font-size: .85rem;
+  font-weight: 600;
+}
+
+
+
+
+.trending-games-container {
+  display: flex;
+  text-align: center;
+  justify-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.trending-games-header {
 }

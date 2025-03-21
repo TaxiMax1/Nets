@@ -5,11 +5,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const gamblebox = document.querySelector('#casinohome');
     const gamblebox2 = document.querySelector('#basketball');
     const netslogo = document.getElementById("netslogo");
+    const intro = document.querySelector('.introduction');
 
     toggleIcon.addEventListener('click', () => {
         aside.classList.toggle('expanded');
         gamblebox.classList.toggle('expanded');
         gamblebox2.classList.toggle('expanded');
+        intro.classList.toggle('shifted');
 
         if (aside.classList.contains('expanded')) {
             netslogo.style.marginLeft = "300px";
