@@ -139,6 +139,7 @@ body {
   border-radius: 5px;
 }
 
+
 #casinohome {
   background-color: var(--sports-bg);
   width: 45px;
@@ -166,9 +167,33 @@ body {
 }
 
 #casinohome.expanded {
-  width: 100px;
+  width: 80px;
   height: 40px;
+  position: relative;
+  left: 25px;
+  top: -95px;
 }
+
+
+.label {
+  color: white;
+  font-size: .82rem;
+  font-weight: 600;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  margin-top: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(-10px);
+}
+
+#casinohome.expanded .label,
+#basketball.expanded .label {
+  opacity: 1;
+  transform: translateX(0);
+}
+
 
 
 
@@ -195,8 +220,11 @@ body {
 }
 
 #basketball.expanded {
-  width: 100px;
+  width: 80px;
   height: 40px;
+  position: relative;
+  left: 25px;
+  top: -95px;
 }
 
 
