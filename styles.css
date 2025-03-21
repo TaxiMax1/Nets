@@ -3,7 +3,7 @@
   --text-color: #fff;
   
   --nav-bg: #1a2c38;
-  --aside-bg: #0f212e;
+  --aside-bg: #0b1b26;
 
   --button-bg: #1475e1;
   --button-hover: #1160ba;
@@ -77,6 +77,8 @@ body {
   font-weight: 600;
   cursor: pointer;
   transition: 0.2s ease-in-out;
+  position: relative;
+  left: 25px;
 }
 
 .login-button {
@@ -102,7 +104,18 @@ body {
   position: relative;
   top: 0;
   left: 0;
-  width: 55px;
+  width: 60px;
   height: 720px;
   background-color: var(--aside-bg);
+}
+
+
+
+.main-page-container {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  background-color: #1a2c38;
+  width: 500px;
+  height: 500px;
 }
