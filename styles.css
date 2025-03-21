@@ -4,9 +4,13 @@
   
   --nav-bg: #1a2c38;
   --aside-bg: #0b1b26;
+  --main-section-bg: #1f3341;
 
   --button-bg: #1475e1;
   --button-hover: #1160ba;
+
+
+  --sports-bg: #233b4b;
 }
 
 body {
@@ -56,11 +60,16 @@ body {
   color: white;
 }
 
-.netslogo {
+.svg-icon.active {
+  color: white;
+}
+
+#netslogo {
   width: 65px;
   cursor: pointer;
   position: relative;
   left: -450px;
+  transition: 0.2s ease-in-out;
   user-select: none;
 }
 
@@ -107,6 +116,87 @@ body {
   width: 60px;
   height: 720px;
   background-color: var(--aside-bg);
+  transition: 0.2s ease-in-out;
+}
+
+.aside-container.expanded {
+  width: 250px;
+}
+
+.asidenav-container {
+  /* margin-top: -630px; */
+  position: relative;
+  top: -295px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+}
+
+
+.sportsgamble-container {
+  background-color: var(--sports-bg);
+  border-radius: 5px;
+}
+
+#casinohome {
+  background-color: var(--sports-bg);
+  width: 45px;
+  height: 45px;
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+#casinohome::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 255, 17, 0.498);
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+  pointer-events: none;
+}
+
+#casinohome:hover::after, #basketball:hover::after {
+  opacity: 1;
+}
+
+#casinohome.expanded {
+  width: 100px;
+  height: 40px;
+}
+
+
+
+#basketball {
+  background-color: var(--sports-bg);
+  width: 45px;
+  height: 45px;
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+#basketball::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 119, 0, 0.645);
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+  pointer-events: none;
+}
+
+#basketball.expanded {
+  width: 100px;
+  height: 40px;
 }
 
 
@@ -115,7 +205,9 @@ body {
   display: flex;
   text-align: center;
   justify-content: center;
-  background-color: #1a2c38;
-  width: 500px;
-  height: 500px;
+  background-color: var(--main-section-bg);
+  width: 1380px;
+  height: 720px;
+  margin-left: 60px;
+  margin-top: -720px;
 }
