@@ -98,7 +98,7 @@ body {
   background-color: var(--button-bg);
   height: 45px;
   width: 92px;
-  border-radius: 5px;
+  border-radius: 3px;
 }
 
 .register-button:hover {
@@ -233,9 +233,75 @@ body {
   display: flex;
   text-align: center;
   justify-content: center;
+  flex-direction: column;
   background-color: var(--main-section-bg);
   width: 1380px;
   height: 720px;
   margin-left: 60px;
   margin-top: -720px;
+}
+
+.main-header {
+  text-align: left;
+  font-family: 'proxima-nova', sans-serif;;
+  font-size: 1.9rem;
+  font-weight: 700;
+  width: 500px;
+  position: relative;
+  left: 80px;
+  bottom: 230px;
+}
+
+.main-register-button {
+  background-color: var(--button-bg);
+  color: white;
+  height: 45px;
+  width: 92px;
+  border-radius: 3px;
+  border: none;
+  font-size: .825rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+  position: relative;
+  left: 80px;
+  bottom: 210px;
+}
+.main-register-button:hover {
+  background-color: var(--button-hover);
+}
+
+.other-signup {
+  color: #b1bad3;
+  position: relative;
+  right: 568px;
+  bottom: 180px;
+  font-size: .7rem;
+  font-weight: 600;
+}
+
+.sign-up-methods {
+  display: flex;
+  gap: 10px; 
+  position: relative;
+  left: 80px;
+  bottom: 165px;
+  width: auto;
+  height: auto;
+}
+
+.signup-method {
+  background-color: #2f4553;
+  width: 45px;
+  height: 45px;
+  border-radius: 5px;
+  transition: 0.2s ease-in-out;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.signup-method:hover {
+  background-color: #557086;
 }
