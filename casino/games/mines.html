@@ -40,24 +40,54 @@
     </aside>
     
     <div class="mines-container">
-      <div class="mines-controls">
-      </div>
-      <div class="mines-board-bg">
-        <div class="info-bg"></div>
-        <div class="startbuttons">
-            <button id="startManualBtn">Start Manual</button>
-            <button id="startAutoBtn">Start Auto</button>
-        </div>  
-
-        <!-- <label for="betAmount">Bet Amount</label>
-        <input type="number" id="betAmount" placeholder="0,00000000">
-        
-        <label for="numMines">Mines</label>
-        <input type="number" id="numMines" value="3"> -->
-
-        <div class="mines-board" id="board"></div>
-      </div>
-    </div>
-
+        <div class="mines-controls"></div>
+      
+        <div class="mines-board-bg">
+          <div class="info-bg"></div>
+          <div class="info-bg2"></div>
+      
+          <div class="startbuttons">
+            <button id="startManualBtn">Manual</button>
+            <button id="startAutoBtn">Auto</button>
+          </div>
+      
+          <label id="betAmountlabel" for="betAmount">Bet Amount</label>
+          <input type="number" id="betAmount" placeholder="0,00000000">
+      
+          <label id="numMineslabel" for="numMines">Mines</label>
+          <select class="numMinesdrop" data-test="mines-count" name="mines-count">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="13">13</option>
+            <option value="14">14</option>
+            <option value="15">15</option>
+            <option value="16">16</option>
+            <option value="17">17</option>
+            <option value="18">18</option>
+            <option value="19">19</option>
+            <option value="20">20</option>
+            <option value="21">21</option>
+            <option value="22">22</option>
+            <option value="23">23</option>
+            <option value="24">24</option>
+          </select>
+          
+          <button type="button" tabindex="0" class="betButton" data-button-root="">
+            <span>Bet</span>
+          </button>
+      
+          <div class="mines-board" id="board"></div>
+        </div>
+      </div>           
 </body>
 </html>

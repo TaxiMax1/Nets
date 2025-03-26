@@ -39,159 +39,118 @@ document.querySelectorAll('.catalog-class').forEach(item => {
 
 
 
-const boardSize = 5;    
-let board = [];            
-let minePositions = [];   
-let revealedCount = 0;     
-let autoRevealInterval = null;
-
-const boardElement = document.getElementById('board');
-const betAmountInput = document.getElementById('betAmount');
-const numMinesInput = document.getElementById('numMines');
-const startManualBtn = document.getElementById('startManualBtn');
-const startAutoBtn = document.getElementById('startAutoBtn');
-
-if (boardElement && startManualBtn && startAutoBtn) {
-  startManualBtn.addEventListener('click', () => {
-    newGame(true);
-  });
-
-  startAutoBtn.addEventListener('click', () => {
-    newGame(false);
-  });
-
-  createBoard();
-  placeMines(parseInt(numMinesInput.value, 10));
-  enableManualPlay();
-}
-
-
-function createBoard() {
-  boardElement.innerHTML = "";
-  board = [];
-  revealedCount = 0;
-
-  for (let i = 0; i < boardSize * boardSize; i++) {
-    board.push({
-      isMine: false,
-      isRevealed: false,
-      element: null
-    });
-  }
-
-  board.forEach((cell, index) => {
-    const cellDiv = document.createElement("div");
-    cellDiv.classList.add("mines-cell");
-    cellDiv.dataset.index = index;
-    boardElement.appendChild(cellDiv);
-    board[index].element = cellDiv;
-  });
-}
-
-
-function placeMines(numMines) {
-  minePositions = [];
-  let placed = 0;
-  while (placed < numMines) {
-    const randomIndex = Math.floor(Math.random() * board.length);
-    if (!board[randomIndex].isMine) {
-      board[randomIndex].isMine = true;
-      minePositions.push(randomIndex);
-      placed++;
+document.addEventListener('DOMContentLoaded', () => {
+    const boardElement = document.getElementById('board');
+    const betAmountInput = document.getElementById('betAmount');
+    const numMinesInput = document.querySelector('.numMinesdrop');
+    const betButton = document.querySelector('.betButton');
+  
+    const boardSize = 5; // 5x5 bræt
+    let board = [];
+    let minePositions = [];
+    let revealedCount = 0;
+    let gameActive = false;
+  
+    // Opretter et tomt bræt
+    function createBoard() {
+      boardElement.innerHTML = '';
+      board = [];
+      revealedCount = 0;
+  
+      for (let i = 0; i < boardSize * boardSize; i++) {
+        const cell = document.createElement('div');
+        cell.classList.add('mines-cell');
+        cell.dataset.index = i;
+        boardElement.appendChild(cell);
+  
+        board.push({
+          isMine: false,
+          isRevealed: false,
+          element: cell
+        });
+      }
     }
-  }
-}
-
-
-function revealCell(index) {
-  const cell = board[index];
-  if (cell.isRevealed) return;
-
-  cell.isRevealed = true;
-  revealedCount++;
-
-  cell.element.classList.add("revealed");
-  cell.element.classList.add(cell.isMine ? "mine" : "safe");
-//   cell.element.textContent = cell.isMine ? "💣" : "";
-
-  if (cell.isMine) {
-    gameOver(false);
-  } else {
-    if (revealedCount === board.length - minePositions.length) {
-      gameOver(true);
+  
+    // Placerer det angivne antal miner tilfældigt
+    function placeMines(numMines) {
+      minePositions = [];
+      while (minePositions.length < numMines) {
+        const index = Math.floor(Math.random() * board.length);
+        if (!board[index].isMine) {
+          board[index].isMine = true;
+          minePositions.push(index);
+        }
+      }
     }
-  }
-}
-
-function enableManualPlay() {
-  board.forEach((cellObj, index) => {
-    cellObj.element.onclick = () => {
-      revealCell(index);
-    };
-  });
-}
-
-function startAutoPlay() {
-  board.forEach((cellObj) => {
-    cellObj.element.onclick = null;
-  });
-
-  if (autoRevealInterval) {
-    clearInterval(autoRevealInterval);
-  }
-
-  autoRevealInterval = setInterval(() => {
-    const unrevealedIndices = board
-      .map((cellObj, idx) => (!cellObj.isRevealed ? idx : null))
-      .filter((val) => val !== null);
-
-    if (unrevealedIndices.length === 0) {
-      stopAutoPlay();
-      return;
+  
+    // Afslører en celle, hvis spillet er aktivt
+    function revealCell(index) {
+      const cell = board[index];
+      if (cell.isRevealed || !gameActive) return;
+  
+      cell.isRevealed = true;
+      cell.element.classList.add('revealed');
+  
+      if (cell.isMine) {
+        cell.element.classList.add('mine');
+        endGame(false); // Tabt, ramte en mine
+      } else {
+        cell.element.classList.add('safe');
+        revealedCount++;
+  
+        // Hvis alle ikke-mine celler er afsløret, har spilleren vundet
+        if (revealedCount === board.length - minePositions.length) {
+          endGame(true);
+        }
+      }
     }
-
-    const randomIndex = Math.floor(Math.random() * unrevealedIndices.length);
-    const cellIndex = unrevealedIndices[randomIndex];
-    revealCell(cellIndex);
-  }, 1000); 
-}
-
-
-function stopAutoPlay() {
-  if (autoRevealInterval) {
-    clearInterval(autoRevealInterval);
-    autoRevealInterval = null;
-  }
-}
-
-
-function newGame(isManual) {
-  stopAutoPlay();
-  createBoard();
-  placeMines(parseInt(numMinesInput.value, 10));
-
-  if (isManual) {
-    enableManualPlay();
-  } else {
-    startAutoPlay();
-  }
-}
-
-
-function gameOver(didWin) {
-  board.forEach((cellObj) => {
-    cellObj.element.classList.add("disabled");
-    if (!didWin && cellObj.isMine) {
-      cellObj.element.classList.add("mine");
-    //   cellObj.element.textContent = "💣";
+  
+    // Tillad klik på cellerne (manuel spil)
+    function enableManualPlay() {
+      board.forEach((cell, index) => {
+        cell.element.onclick = () => revealCell(index);
+      });
     }
+  
+    // Starter (eller genstarter) spillet
+    function startGame() {
+      // Valider bet amount og antal miner
+      const betAmount = parseFloat(betAmountInput.value);
+      const numMines = parseInt(numMinesInput.value, 10);
+  
+      if (isNaN(betAmount) || betAmount <= 0) {
+        alert("Indtast et gyldigt beløb større end 0!");
+        return;
+      }
+      if (isNaN(numMines) || numMines <= 0 || numMines >= boardSize * boardSize) {
+        alert("Vælg et gyldigt antal miner!");
+        return;
+      }
+  
+      gameActive = true;
+      createBoard();
+      placeMines(numMines);
+      enableManualPlay();
+    }
+  
+    // Slutter spillet: deaktiverer cellernes klik og viser alle miner
+    function endGame(won) {
+      gameActive = false;
+  
+      board.forEach(cell => {
+        cell.element.onclick = null;
+        if (cell.isMine) {
+          cell.element.classList.add('mine');
+        }
+      });
+  
+      alert(won ? 'Tillykke, du vandt!' : 'Du ramte en mine. Tryk "Bet" for at starte forfra.');
+    }
+  
+    // Bet-knappen starter eller genstarter spillet
+    betButton.addEventListener('click', startGame);
+  
+    // Start med et tomt bræt
+    createBoard();
   });
-
-  stopAutoPlay();
-
-  if (didWin) {
-    alert("Tillykke, du vandt!");
-  } else {
-    alert("Du ramte en mine. Bedre held næste gang!");
-  }
-}
+  
