@@ -39,19 +39,20 @@ document.querySelectorAll('.catalog-class').forEach(item => {
 
 
 
+
+
 document.addEventListener('DOMContentLoaded', () => {
     const boardElement = document.getElementById('board');
     const betAmountInput = document.getElementById('betAmount');
     const numMinesInput = document.querySelector('.numMinesdrop');
     const betButton = document.querySelector('.betButton');
   
-    const boardSize = 5; // 5x5 bræt
+    const boardSize = 5; 
     let board = [];
     let minePositions = [];
     let revealedCount = 0;
     let gameActive = false;
   
-    // Opretter et tomt bræt
     function createBoard() {
       boardElement.innerHTML = '';
       board = [];
@@ -71,7 +72,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   
-    // Placerer det angivne antal miner tilfældigt
     function placeMines(numMines) {
       minePositions = [];
       while (minePositions.length < numMines) {
@@ -83,7 +83,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   
-    // Afslører en celle, hvis spillet er aktivt
     function revealCell(index) {
       const cell = board[index];
       if (cell.isRevealed || !gameActive) return;
@@ -93,28 +92,24 @@ document.addEventListener('DOMContentLoaded', () => {
   
       if (cell.isMine) {
         cell.element.classList.add('mine');
-        endGame(false); // Tabt, ramte en mine
+        endGame(false); 
       } else {
         cell.element.classList.add('safe');
         revealedCount++;
   
-        // Hvis alle ikke-mine celler er afsløret, har spilleren vundet
         if (revealedCount === board.length - minePositions.length) {
           endGame(true);
         }
       }
     }
   
-    // Tillad klik på cellerne (manuel spil)
     function enableManualPlay() {
       board.forEach((cell, index) => {
         cell.element.onclick = () => revealCell(index);
       });
     }
   
-    // Starter (eller genstarter) spillet
     function startGame() {
-      // Valider bet amount og antal miner
       const betAmount = parseFloat(betAmountInput.value);
       const numMines = parseInt(numMinesInput.value, 10);
   
@@ -133,7 +128,6 @@ document.addEventListener('DOMContentLoaded', () => {
       enableManualPlay();
     }
   
-    // Slutter spillet: deaktiverer cellernes klik og viser alle miner
     function endGame(won) {
       gameActive = false;
   
@@ -147,10 +141,8 @@ document.addEventListener('DOMContentLoaded', () => {
       alert(won ? 'Tillykke, du vandt!' : 'Du ramte en mine. Tryk "Bet" for at starte forfra.');
     }
   
-    // Bet-knappen starter eller genstarter spillet
     betButton.addEventListener('click', startGame);
   
-    // Start med et tomt bræt
     createBoard();
   });
   
