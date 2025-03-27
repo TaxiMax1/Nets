@@ -23,7 +23,7 @@ body {
   padding: 0;
   background-color: var(--bg-color);
   color: var(--text-color);
-  font-family: 'ProximaNova', sans-serif;
+  font-family: 'Roboto', sans-serif;
   overflow-x: hidden;
 }
 
@@ -316,6 +316,10 @@ body {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
+}
+
+.other-sites-boxes a {
+  text-decoration: none;
 }
 
 .other-sites-box {
@@ -666,7 +670,7 @@ body {
   border: none;
   outline: none;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
 }
 
@@ -715,4 +719,221 @@ body {
 
 .mines-cell.disabled {
   pointer-events: none;
+}
+
+
+
+
+
+/* Register */
+
+@keyframes popUp {
+  from {
+    transform: translateY(2%);
+  }
+
+  to {
+    transform: translateY(0%);
+  }
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.633); 
+}
+
+.modal-header {
+  background-color: #1a2c38;
+  position: relative;
+  width: 600px;
+  height: 60px;
+  border-radius: .5rem .5rem 0px 0px;
+}
+
+.modal-content {
+  background-color: #0f212e;
+  margin: 40px auto;
+  height: 700px;
+  width: 600px;
+  border-radius: .5rem;
+  position: relative;
+  animation: popUp 0.2s ease-in-out;
+}
+
+.modal-content h2 {
+  user-select: none;
+  position: relative;
+  top: 20px;
+  left: 11px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  margin-top: 25px;
+}
+
+.modal-label {
+  position: relative;
+  top: 40px;
+  left: 12px;
+  color: #b1bad3;
+  font-size: .9rem;
+  user-select: none;
+}
+
+.modal-label span {
+  color: #ed4163;
+}
+
+.modal-input {
+  position: relative;
+  top: 45px;
+  left: 10px;
+  width: 560px;
+  color: #b1bad3;
+  background-color: #0f212e;
+  border: 2px solid #2f4553;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .2), 0 1px 2px 0 rgba(0, 0, 0, .12);
+  border-radius: .25rem;
+  letter-spacing: 0;
+  font-weight: 500;
+  outline: none;
+  transition: 0.2s ease-in-out;
+  padding: .5em;
+}
+
+.modal-input:hover {
+  border-color: #557086;
+}
+
+.modal-input:focus {
+  border-color: #557086;
+}
+
+.minmaxuser {
+  position: relative;
+  top: 50px;
+  left: 12px;
+  font-size: 12px;
+  color: #b1bad3;
+  padding-bottom: 5px;
+  user-select: none;
+}
+
+.view-pass {
+  background-color: transparent;
+}
+
+.view-pass-svg {
+  position: relative;
+  left: 600px;
+  top: 19px;
+  font-size: 18px;
+  background-color: transparent;
+  border: none;
+}
+
+.close-button {
+  position: absolute;
+  right: 25px;
+  top: 15px;
+  cursor: pointer;
+  font-size: 12px;
+  user-select: none;
+  padding: 10px 12px; 
+  border-radius: 20px; 
+  transition: background-color 0.2s ease;
+}
+
+.close-button:hover {
+  background-color: #071824;
+}
+
+.signup-button {
+  position: relative;
+  top: 130px;
+  left: 11px;
+  width: 577px;
+  height: 50px;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  background-color: #1475e1;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.signin-method {
+  position: relative;
+  top: 180px;
+  left: 190px;
+  font-size: 14px;
+  color: #b1bad3;
+  user-select: none;
+}
+
+.signin-method span {
+  color: white;
+  cursor: pointer;
+}
+
+.balance-display {
+  color: white;
+  font-size: 0.835rem;
+  font-weight: 600;
+  position: relative;
+  right: 690px;
+  display: none;
+  padding: 14px 22px;
+  background-color: #0f212e;
+  border-radius: 5px 0px 0px 5px;
+}
+
+.balance-wallet {
+  margin-left: -730px;
+  height: 42px;
+  width: 70px;
+  border-radius: 0px 4px 4px 0px;
+  background-color: #1475e1;
+}
+
+
+
+
+
+.modalLogin {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.633); 
+}
+
+.login-submit-button {
+  position: relative;
+  top: 130px;
+  left: 11px;
+  width: 577px;
+  height: 50px;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  background-color: #1475e1;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
 }
