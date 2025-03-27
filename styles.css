@@ -907,6 +907,12 @@ body {
   background-color: #1475e1;
 }
 
+.logout-button {
+  margin-left: 500px;
+  margin-top: 2px;
+  background-color: transparent;
+}
+
 
 
 

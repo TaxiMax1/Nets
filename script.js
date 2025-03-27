@@ -202,7 +202,7 @@ document.addEventListener('DOMContentLoaded', () => {
   
       if (updateError) return alert("Kunne ikke opdatere saldo.");
   
-      alert(`Du har cashet ud og vundet $${payout.toFixed(2)}!`);
+    //   alert(`Du har cashet ud og vundet $${payout.toFixed(2)}!`);
       updateUIOnLogin();
       resetGame();
     }
@@ -322,18 +322,33 @@ document.addEventListener('DOMContentLoaded', () => {
   
     if (loginError) return alert("Login failed: " + loginError.message);
   
-    alert("Logged in!");
     closeLogin();
     updateUIOnLogin();
   }
+
+  const logoutBtn = document.querySelector(".logout-button");
+  if (logoutBtn) logoutBtn.addEventListener("click", handleLogout);
+
+
+  async function handleLogout() {
+    const { error } = await supabaseClient.auth.signOut();
+    if (error) {
+      alert("Logout fejlede: " + error.message);
+      return;
+    }
+  
+    updateUIOnLogin(); 
+  }  
   
   async function updateUIOnLogin() {
     const { data: sessionData } = await supabaseClient.auth.getSession();
   
     const loginBtn = document.querySelector(".login-button");
     const registerBtn = document.querySelector(".register-button");
+    const registerBtn2 = document.querySelector(".main-register-button");
     const balanceDisplay = document.querySelector(".balance-display");
     const balanceWallet = document.querySelector(".balance-wallet");
+    const logoutButton = document.querySelector(".logout-button");
   
     if (!sessionData?.session?.user) {
       if (loginBtn) {
@@ -344,6 +359,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (registerBtn) registerBtn.style.display = "inline-block";
       if (balanceDisplay) balanceDisplay.style.display = "none";
       if (balanceWallet) balanceWallet.style.display = "none";
+      if (logoutButton) logoutButton.style.display = "none";
       return;
     }
   
@@ -378,7 +394,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (balanceWallet) {
       balanceWallet.style.display = "inline-block"
     }
+
+    if (logoutButton) {
+        logoutButton.style.display = "inline-block"
+    }
   
     if (loginBtn) loginBtn.style.display = "none";
     if (registerBtn) registerBtn.style.display = "none";
+    // if (registerBtn2) registerBtn2.style.display = "none";
   }  
